@@ -1,13 +1,35 @@
 /*
+BabyCreed
+
+BabyCreed (BCR) is a project created by the CREED team that generates income through
+real-world assets like stocks, mutual funds, and banking interest.
+Website: https://creed-one.com/baby-creed
+Whitepaper: https://bit.ly/BabyCreedPaper
+Telegram: https://t.me/BabyCreedToken
+Twitter X: https://twitter.com/creedfinance1
+Github Contracts: https://github.com/ArielRin/BCR-Baby-Creed
+
+Tokenomics
+Supply: 1.5 Trillion Tokens
+5% on Buys and Sells (2% LP 3% Utility)
+MaxTX: 100,000,000
+Swap and liquify at 100 not 300 now
+
+
+
+
+
 Deploy Constructors required
 add destroy tokens with trueburn
-Arg [0] : name_ (string): Second Test Baby CREED 1
-Arg [1] : symbol_ (string): 2ndTestBabyCR1
+Arg [0] : name_ (string): Baby CREED
+Arg [1] : symbol_ (string): BCR
 Arg [2] : totalSupply_ (uint256): 1500000000000
 Arg [3] : decimals_ (uint8): 18
 Arg [4] : addr_ (address[5]): ***SEEBOLOW FOR CORRECT STRING*******
 Arg [5] : value_ (uint256[6]): ["0","0","3","2","0","0"]
 
+MaxTX: 100,000,000
+Swap and liquify at 100 not 300 now
 
 BBCR1 values used to maintain same addressing with different purpose
 InvestmentStocks:   _FeeInvestmentStocks = value_[0];       0
@@ -1249,7 +1271,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
 
 
 
-contract TestingForBabyCreed1 is ERC20, Ownable {
+contract BabyCreed is ERC20, Ownable {
     using Address for address;
 
     mapping(address => uint256) private _rOwned;
