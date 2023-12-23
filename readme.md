@@ -10,6 +10,8 @@ The Baby Creed (BCR) Token is an ERC20 token with a total supply of 1.5 trillion
 - **Github Contracts:** [https://github.com/ArielRin/BCR-Baby-Creed](https://github.com/ArielRin/BCR-Baby-Creed)
 - **Test Contract:** [https://testnet.bscscan.com/token/0xfcc19802278A60217Cc671599Ca601222B4b9230#code](https://testnet.bscscan.com/token/0xfcc19802278A60217Cc671599Ca601222B4b9230#code)
 
+![The Defiant Little Assassin](https://raw.githubusercontent.com/ArielRin/BCR-Baby-Creed/master/bcrcoinswallassassin.jpg)
+
 ## Tax Features
 ### Distribution of Taxes
 - **3% Treasury Fee:** Each transaction contributes 3% to the Treasury. These funds are earmarked for the project's long-term development and sustainability.
