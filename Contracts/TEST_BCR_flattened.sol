@@ -3,6 +3,7 @@ BabyCreed
 
 BabyCreed (BCR) is a project created by the CREED team that generates income through
 real-world assets like stocks, mutual funds, and banking interest.
+
 Website: https://creed-one.com/baby-creed
 Whitepaper: https://bit.ly/BabyCreedPaper
 Telegram: https://t.me/BabyCreedToken
