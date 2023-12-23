@@ -1,4 +1,6 @@
 /*
+
+
 BabyCreed
 
 BabyCreed (BCR) is a project created by the CREED team that generates income through
@@ -16,7 +18,7 @@ MaxTX: 100,000,000
 Swap and liquify at 100 not 300 now
 
 
-
+testnet deployed at 0x63440b03263ED989d8A2bd912ba6cc1640fA680D
 
 
 Deploy Constructors required
