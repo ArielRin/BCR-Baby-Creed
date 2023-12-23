@@ -3,6 +3,8 @@
 ## Overview
 The Baby Creed (BCR) Token is an ERC20 token with a total supply of 1.5 trillion tokens. This contract includes unique tax features that apply to transactions, part of which contributes to the project's sustainability and liquidity.
 
+https://testnet.bscscan.com/token/0xfcc19802278A60217Cc671599Ca601222B4b9230#code
+
 ## Tax Features
 ### Distribution of Taxes
 - **3% Treasury Fee:** Each transaction contributes 3% to the Treasury. These funds are earmarked for the project's long-term development and sustainability.
