@@ -1,0 +1,101 @@
+// looks to have failed the swap and liquify event here
+// maybe still in cooldown phase so wont allow till complete
+// will try again after launch protection period is over
+
+
+{
+  "action": {
+    "callType": "call",
+    "from": "0xade2c58e2a7f9e711eeb18a3fa480eef89f0eb82",
+    "gas": "0x35179",
+    "input": "0x7ff36ab500000000000000000000000000000000000000000bc987be7ca47444bd2d6b250000000000000000000000000000000000000000000000000000000000000080000000000000000000000000ade2c58e2a7f9e711eeb18a3fa480eef89f0eb8200000000000000000000000000000000000000000000000000000000658b8ee40000000000000000000000000000000000000000000000000000000000000002000000000000000000000000a29d0ee618f33d8efe9a20557fd0ef63dd050859000000000000000000000000451c42d83f0cef2f5623326aadae99425f4f19e6",
+    "to": "0x581fa0ee5a68a1fe7c8ad1eb2bfdd9cf66d3d923",
+    "value": "0xDE0B6B3A7640000"
+  },
+  "error": "execution reverted",
+  "subtraces": 4,
+  "traceAddress": [],
+  "type": "call"
+},
+{
+  "action": {
+    "callType": "staticcall",
+    "from": "0x581fa0ee5a68a1fe7c8ad1eb2bfdd9cf66d3d923",
+    "gas": "0x32DF4",
+    "input": "0x0902f1ac",
+    "to": "0x780ad4bb25750fb5ef9de266b6489253e0b8e6b7",
+    "value": "0x0"
+  },
+  "error": "execution reverted",
+  "subtraces": 0,
+  "traceAddress": [
+    0
+  ],
+  "type": "call"
+},
+{
+  "action": {
+    "callType": "call",
+    "from": "0x581fa0ee5a68a1fe7c8ad1eb2bfdd9cf66d3d923",
+    "gas": "0x2FB1B",
+    "input": "0xd0e30db0",
+    "to": "0xa29d0ee618f33d8efe9a20557fd0ef63dd050859",
+    "value": "0xDE0B6B3A7640000"
+  },
+  "error": "execution reverted",
+  "subtraces": 0,
+  "traceAddress": [
+    1
+  ],
+  "type": "call"
+},
+{
+  "action": {
+    "callType": "call",
+    "from": "0x581fa0ee5a68a1fe7c8ad1eb2bfdd9cf66d3d923",
+    "gas": "0x299DB",
+    "input": "0xa9059cbb000000000000000000000000780ad4bb25750fb5ef9de266b6489253e0b8e6b70000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "to": "0xa29d0ee618f33d8efe9a20557fd0ef63dd050859",
+    "value": "0x0"
+  },
+  "error": "execution reverted",
+  "subtraces": 0,
+  "traceAddress": [
+    2
+  ],
+  "type": "call"
+},
+{
+  "action": {
+    "callType": "call",
+    "from": "0x581fa0ee5a68a1fe7c8ad1eb2bfdd9cf66d3d923",
+    "gas": "0x271BD",
+    "input": "0x022c0d9f00000000000000000000000000000000000000000d50d7ee34db9f408d3a754c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ade2c58e2a7f9e711eeb18a3fa480eef89f0eb8200000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000",
+    "to": "0x780ad4bb25750fb5ef9de266b6489253e0b8e6b7",
+    "value": "0x0"
+  },
+  "error": "execution reverted",
+  "subtraces": 1,
+  "traceAddress": [
+    3
+  ],
+  "type": "call"
+},
+{
+  "action": {
+    "callType": "call",
+    "from": "0x780ad4bb25750fb5ef9de266b6489253e0b8e6b7",
+    "gas": "0x2341D",
+    "input": "0xa9059cbb000000000000000000000000ade2c58e2a7f9e711eeb18a3fa480eef89f0eb8200000000000000000000000000000000000000000d50d7ee34db9f408d3a754c",
+    "to": "0x451c42d83f0cef2f5623326aadae99425f4f19e6",
+    "value": "0x0"
+  },
+  "error": "execution reverted",
+  "subtraces": 0,
+  "traceAddress": [
+    3,
+    0
+  ],
+  "type": "call"
+}
+]
