@@ -1971,4 +1971,16 @@ contract BabyCREED is ERC20, Ownable {
     function setTradeCooldownBlocks(uint256 _blocks) external onlyOwner {
     tradeCooldownBlocks = _blocks;
     }
+
+
+     function recoverLostTokens(address tokenAddress, uint256 tokenAmount, address destination) external onlyOwner {
+        require(tokenAddress != address(0), "Invalid token address");
+        require(destination != address(0), "Invalid destination address");
+
+        IERC20 token = IERC20(tokenAddress);
+        uint256 contractTokenBalance = token.balanceOf(address(this));
+        require(tokenAmount <= contractTokenBalance, "Insufficient token balance in contract");
+
+        token.transfer(destination, tokenAmount);
+    }
 }
