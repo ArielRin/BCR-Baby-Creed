@@ -1,4 +1,6 @@
 /*
+
+
 BabyCreed
 
 BabyCreed (BCR) is a project created by the CREED team that generates income through
@@ -13,10 +15,6 @@ Tokenomics
 Supply: 1.5 Trillion Tokens
 5% on Buys and Sells (2% LP 3% Utility)
 MaxTX: 100,000,000
-Swap and liquify at 100 not 300 now
-
-
-testnet deployed at 0x63440b03263ED989d8A2bd912ba6cc1640fA680D
 
 
 Deploy Constructors required
@@ -51,12 +49,9 @@ address deploy string per chain (change router)
 // bsctestnet   ["0x87e8B18Fda7A61db217E1C279135566A90862479","0x7699c7f12c321eE818dF5066178A3E15EB27c498","0x5a501DD7BF174cd1aE7a4DE5260Ec5717CbC7B19","0xdc4904b5f716Ff30d8495e35dC99c109bb5eCf81","0x3A9D1bA4cA2713CF3226d62218CB77eF0028fc55"]
 // maxx         ["0x87e8B18Fda7A61db217E1C279135566A90862479","0x7699c7f12c321eE818dF5066178A3E15EB27c498","0x5a501DD7BF174cd1aE7a4DE5260Ec5717CbC7B19","0x581fA0Ee5A68a1Fe7c8Ad1Eb2bfdD9cF66d3d923","0x3A9D1bA4cA2713CF3226d62218CB77eF0028fc55"]
 
-cheynes 0x18Ff7f454B6A3233113f51030384F49054DD27BF
 */
 
-/**
- *Submitted for verification at BscScan.com on 2022-06-29
-*/
+
 
 // SPDX-License-Identifier: MIT
 
@@ -1263,7 +1258,8 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external;
 }
 
-contract BabyCreed is ERC20, Ownable {
+    // @dev2024  naming to BabyCreed
+contract BabyCREED is ERC20, Ownable {
     using Address for address;
 
     mapping(address => uint256) private _rOwned;
@@ -1280,6 +1276,13 @@ contract BabyCreed is ERC20, Ownable {
     address payable public treasuryAddress;
     address public immutable deadAddress =
         0x000000000000000000000000000000000000dEaD;
+
+
+    // @dev2024 add cooldown mapp last rade block
+    uint256 public tradeCooldownBlocks = 2;
+    mapping(address => uint256) private lastTradeBlock;
+
+
 
     uint256 private constant MAX = ~uint256(0);
     uint256 private _tTotal;
@@ -1312,10 +1315,6 @@ contract BabyCreed is ERC20, Ownable {
     uint256 private minimumTokensBeforeSwap;
     uint256 private buyBackUpperLimit;
 
-
-    bool private tradingEnabled = false;
-
-
     IUniswapV2Router02 public immutable uniswapV2Router;
     address public immutable uniswapV2Pair;
 
@@ -1340,6 +1339,15 @@ contract BabyCreed is ERC20, Ownable {
         inSwapAndLiquify = true;
         _;
         inSwapAndLiquify = false;
+    }
+
+    // @dev2024 cooldown modifier
+    modifier tradeCooldown() {
+    require(
+        block.number > lastTradeBlock[msg.sender] + tradeCooldownBlocks,
+        "Trade cooldown period currently set"
+    );
+    _;
     }
 
     constructor(
@@ -1624,31 +1632,29 @@ contract BabyCreed is ERC20, Ownable {
         }
     }
 
+    // @dev2024 add cooldown block check
     function _transfer(
-    address sender,
-    address recipient,
-    uint256 amount
-) internal virtual override {
-    require(sender != address(0), "ERC20: transfer from the zero address");
-    require(recipient != address(0), "ERC20: transfer to the zero address");
-    require(amount > 0, "Transfer amount must be greater than zero");
+        address sender,
+        address recipient,
+        uint256 amount
+    ) internal virtual override tradeCooldown {
+    lastTradeBlock[sender] = block.number;
 
-    // Check if trading is enabled or if the sender is the owner
-    if(sender != owner() && recipient != owner()) {
-        require(tradingEnabled, "Trading is not enabled yet");
-    }
-
-    uint256 senderBalance = balanceOf(sender);
-    require(
-        senderBalance >= amount,
-        "ERC20: transfer amount exceeds balance"
-    );
-    if (sender != owner() && recipient != owner()) {
+    //original
+        require(sender != address(0), "ERC20: transfer from the zero address");
+        require(recipient != address(0), "ERC20: transfer to the zero address");
+        require(amount > 0, "Transfer amount must be greater than zero");
+        uint256 senderBalance = balanceOf(sender);
         require(
-            amount <= _maxTxAmount,
-            "Transfer amount exceeds the maxTxAmount."
+            senderBalance >= amount,
+            "ERC20: transfer amount exceeds balance"
         );
-    }
+        if (sender != owner() && recipient != owner()) {
+            require(
+                amount <= _maxTxAmount,
+                "Transfer amount exceeds the maxTxAmount."
+            );
+        }
 
         _beforeTokenTransfer(sender, recipient, amount);
 
@@ -1961,30 +1967,8 @@ contract BabyCreed is ERC20, Ownable {
     {
         recipient.transfer(amount);
     }
-
-    function recoverERC20(address tokenAddress, uint256 tokenAmount) external onlyOwner {
-    IERC20(tokenAddress).transfer(owner(), tokenAmount);
+    // @dev2024
+    function setTradeCooldownBlocks(uint256 _blocks) external onlyOwner {
+    tradeCooldownBlocks = _blocks;
     }
-
-    function withdrawEther(uint256 amount) external onlyOwner {
-    require(address(this).balance >= amount, "Insufficient balance");
-    payable(owner()).transfer(amount);
-    }
-
-    function enableTrading() public onlyOwner {
-    tradingEnabled = true;
-    }
-
-    function manualSwapAndLiquify() external onlyOwner {
-    uint256 contractTokenBalance = balanceOf(address(this));
-    bool overMinimumTokenBalance = contractTokenBalance >= minimumTokensBeforeSwap;
-
-    if (overMinimumTokenBalance) {
-        // You can either swap the entire balance or a predefined portion of it
-        swapTokens(contractTokenBalance);
-    }
-
-    }
-//
-
 }
